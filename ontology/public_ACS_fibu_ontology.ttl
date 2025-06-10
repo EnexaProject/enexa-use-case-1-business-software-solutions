@@ -1,0 +1,1109 @@
+@prefix : <https://data.datev.de/meta/ACS/fibu/public#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fibu: <https://data.datev.de/meta/ACS/fibu#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <https://data.datev.de/meta/ACS/fibu/public#> .
+
+<https://data.datev.de/meta/ACS/fibu/public> rdf:type owl:Ontology ;
+                                              owl:versionIRI <https://data.datev.de/meta/ACS/1.0.0/fibu/public> ;
+                                              dcterms:created "2024-06-27" ;
+                                              dcterms:creator "Maria Schnoedt-Fuchs <maria.schnoedt-fuchs@datev.de>" ;
+                                              dcterms:description "ENEXA Ontologie Use Case 1: Business software solutions - Public Version"@en ;
+                                              dcterms:license "https://creativecommons.org/licenses/by/4.0/" ;
+                                              dcterms:modified "2025-06-10" ;
+                                              dcterms:title "Ontology for DATEV Automation Service for Invoices (public version)" ;
+                                              owl:versionInfo "1.0.0" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/created
+dcterms:created rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+dcterms:modified rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/source
+dcterms:source rdf:type owl:AnnotationProperty ;
+               rdfs:comment "This property is intended to be used with non-literal values. The described resource may be derived from the related resource in whole or in part. Best practice is to identify the related resource by means of a URI or a string conforming to a formal identification system."@en .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#belegtGeschaeftspartner
+fibu:belegtGeschaeftspartner rdf:type owl:ObjectProperty ;
+                             owl:inverseOf fibu:istGeschaeftspartnerIn ;
+                             rdfs:domain fibu:Beleg ;
+                             rdfs:range fibu:Geschaeftspartner ;
+                             rdfs:label "belegt Geschäftspartner"@de ,
+                                        "documents business partner"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#beraet
+fibu:beraet rdf:type owl:ObjectProperty ;
+            owl:inverseOf fibu:wirdBeratenVon ;
+            rdfs:domain fibu:Berater ;
+            rdfs:range fibu:Mandant ;
+            rdfs:label "advises"@en ,
+                       "berät"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#erhalten
+fibu:erhalten rdf:type owl:ObjectProperty ;
+              owl:inverseOf fibu:erhaltenVon ;
+              rdf:type owl:AsymmetricProperty ,
+                       owl:IrreflexiveProperty ;
+              rdfs:domain fibu:Unternehmen ;
+              rdfs:range <http://xmlns.com/foaf/0.1/Document> ;
+              rdfs:label "erhalten"@de ,
+                         "received"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#erhaltenVon
+fibu:erhaltenVon rdf:type owl:ObjectProperty ;
+                 rdfs:domain <http://xmlns.com/foaf/0.1/Document> ;
+                 rdfs:range fibu:Unternehmen ;
+                 rdfs:label "erhalten von"@de ,
+                            "was received by"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#erhaltenerBeleg
+fibu:erhaltenerBeleg rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf fibu:erhalten ;
+                     rdfs:domain fibu:Unternehmen ;
+                     rdfs:range fibu:Eingangsrechnung ;
+                     rdfs:label "erhaltener Beleg"@de ,
+                                "received invoice"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#geschickt
+fibu:geschickt rdf:type owl:ObjectProperty ;
+               owl:inverseOf fibu:geschicktVon ;
+               rdf:type owl:IrreflexiveProperty ;
+               rdfs:domain fibu:Unternehmen ;
+               rdfs:range <http://xmlns.com/foaf/0.1/Document> ;
+               rdfs:label "geschickt"@de ,
+                          "sent"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#geschicktVon
+fibu:geschicktVon rdf:type owl:ObjectProperty ;
+                  rdfs:domain <http://xmlns.com/foaf/0.1/Document> ;
+                  rdfs:range fibu:Unternehmen ;
+                  rdfs:label "geschickt von"@de ,
+                             "was sent by"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatAdresse
+fibu:hatAdresse rdf:type owl:ObjectProperty ;
+                owl:inverseOf fibu:istAdresseVon ;
+                rdfs:domain fibu:HandelndeEntitaet ;
+                rdfs:range fibu:Adresse ;
+                rdfs:label "has address"@en ,
+                           "hat Adresse"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatBranche
+fibu:hatBranche rdf:type owl:ObjectProperty ;
+                owl:inverseOf fibu:istBrancheVon ;
+                rdfs:domain fibu:Unternehmen ;
+                rdfs:range fibu:Branche ;
+                rdfs:label "has industrial sector"@en ,
+                           "hat Branche"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatBruttoendbetrag
+fibu:hatBruttoendbetrag rdf:type owl:ObjectProperty ,
+                                 owl:FunctionalProperty ;
+                        rdfs:domain fibu:Beleg ;
+                        rdfs:range <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/AmountOfMoney> ;
+                        rdfs:comment "The total amount of the Invoice with VAT."@en ;
+                        rdfs:label "has total amount with VAT"@en ,
+                                   "hat Bruttoendbetrag"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatBruttopreisDesGegenstands
+fibu:hatBruttopreisDesGegenstands rdf:type owl:ObjectProperty ,
+                                           owl:FunctionalProperty ;
+                                  rdfs:domain fibu:Einzelposition ;
+                                  rdfs:range <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/AmountOfMoney> ;
+                                  rdfs:label "has grossprice of item"@en ,
+                                             "hat Bruttopreis des Gegenstands"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatEinzelposition
+fibu:hatEinzelposition rdf:type owl:ObjectProperty ;
+                       owl:inverseOf fibu:istEinzelpositionVon ;
+                       rdfs:domain fibu:Beleg ;
+                       rdfs:range fibu:Einzelposition ;
+                       rdfs:label "has invoice line"@en ,
+                                  "hat Einzelposition"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatGegenkonto
+fibu:hatGegenkonto rdf:type owl:ObjectProperty ;
+                   owl:inverseOf fibu:istGegenkontoVon ;
+                   rdfs:domain fibu:Buchung ;
+                   rdfs:range fibu:Buchungskonto ;
+                   rdfs:label "hat Gegenkonto"@de ,
+				      "has contra account"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatGegenstand
+fibu:hatGegenstand rdf:type owl:ObjectProperty ;
+                   owl:inverseOf fibu:istGegenstandVon ;
+                   rdfs:domain fibu:Einzelposition ;
+                   rdfs:range fibu:Gegenstand ;
+                   rdfs:label "has item"@en ,
+                              "hat Gegenstand"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatGeschaeftsbeziehungMit
+fibu:hatGeschaeftsbeziehungMit rdf:type owl:ObjectProperty ,
+                                        owl:SymmetricProperty ;
+                               rdfs:domain fibu:Geschaeftspartner ;
+                               rdfs:range fibu:Mandant ;
+                               rdfs:label "hat Geschäftsbeziehung mit"@de ,
+									"has business relationship with"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatGesamtUmsatzsteuerbetrag
+fibu:hatGesamtUStBetrag rdf:type owl:ObjectProperty ,
+                              owl:FunctionalProperty ;
+                     rdfs:domain fibu:Beleg ;
+                     rdfs:range <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/AmountOfMoney> ;
+                     rdfs:label "has total VAT amount"@en ,
+                                "hat Gesamtbetrag der Umsatzsteuer"@de .
+
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatKonto
+fibu:hatKonto rdf:type owl:ObjectProperty ;
+              owl:inverseOf fibu:istKontoVon ;
+              rdfs:domain fibu:Buchung ;
+              rdfs:range fibu:Buchungskonto ;
+              rdfs:label "hat Konto"@de ,
+						"has posting account"@en .
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatLand
+fibu:hatLand rdf:type owl:ObjectProperty ;
+             owl:inverseOf fibu:istLandVon ;
+             rdfs:domain fibu:Adresse ;
+             rdfs:range fibu:Land ;
+             rdfs:label "has Country"@en ,
+                        "hat Land"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatLeistungsempfaenger
+fibu:hatLeistungsempfaenger rdf:type owl:ObjectProperty ;
+                            owl:inverseOf fibu:istLeistungsempfaengerIn ;
+                            rdfs:domain fibu:Beleg ;
+                            rdfs:range fibu:Geschaeftspartner ;
+                            rdfs:label "has recipient of service"@en ,
+                                       "hat Leistungsempfänger"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatLeistungserbringer
+fibu:hatLeistungserbringer rdf:type owl:ObjectProperty ;
+                           rdfs:domain fibu:Beleg ;
+                           rdfs:range fibu:Geschaeftspartner ;
+                           rdfs:label "has provider of service"@en ,
+                                      "hat Leistungserbringer"@de .
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatNettoendbetrag
+fibu:hatNettoendbetrag rdf:type owl:ObjectProperty ,
+                                owl:FunctionalProperty ;
+                       rdfs:domain fibu:Beleg ;
+                       rdfs:range <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/AmountOfMoney> ;
+                       rdfs:comment "The total amount of the Invoice without VAT."@en ;
+                       rdfs:label "has total amount without VAT"@en ,
+                                  "hat Nettoendbetrag"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatNettopreisDesGegenstands
+fibu:hatNettopreisDesGegenstands rdf:type owl:ObjectProperty ,
+                                          owl:FunctionalProperty ;
+                                 rdfs:domain fibu:Einzelposition ;
+                                 rdfs:range <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/AmountOfMoney> ;
+                                 rdfs:label "has net price of item"@en ,
+                                            "hat Nettopreis des Gegenstands"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatNettosummeInZeile
+fibu:hatNettosummeInZeile rdf:type owl:ObjectProperty ,
+                                   owl:FunctionalProperty ;
+                          rdfs:domain fibu:Einzelposition ;
+                          rdfs:range <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/AmountOfMoney> ;
+                          rdfs:comment "Nettopreis des Gegenstands * Anzahl"@de ,
+										"Net price of item * quantity"@en ;
+                          rdfs:label "has line net amount"@en ,
+                                     "hat Nettosumme in Zeile"@de .
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatProduktklasse
+fibu:hatProduktklasse rdf:type owl:ObjectProperty ;
+                      owl:inverseOf fibu:istProduktklasseVon ;
+                      rdfs:domain fibu:Gegenstand ;
+                      rdfs:range fibu:Produktklasse ;
+                      rdfs:label "hat Produktklasse"@de ,
+								"has product category"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatSKR
+fibu:hatSKR rdf:type owl:ObjectProperty ;
+            owl:inverseOf fibu:istSKRvon ;
+            rdfs:domain fibu:Mandant ;
+            rdfs:range fibu:SKR ;
+			rdfs:comment "SKR steht für Standardkontenrahmen und ist ein systematisches Verzeichnis von Konten, das in der Buchhaltung verwendet wird, um Geschäftsvorfälle zu erfassen und zu ordnen."@de , 
+						"SKR stands for Standard Chart of Accounts, which is a systematic directory of accounts used in accounting to record and organize business transactions."@en ;
+            rdfs:label "hat SKR"@de ,
+						"has SKR"@en .
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatSteuersachverhalt
+fibu:hatSteuersachverhalt rdf:type owl:ObjectProperty ;
+                          owl:inverseOf fibu:istSteuersachverhaltVon ;
+                          rdfs:domain fibu:Buchung ;
+                          rdfs:range fibu:Steuersachverhalt ;
+                          rdfs:label "hat Steuersachverhalt"@de , 
+									"has taxable transaction"@en . 
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatUStBetrag
+fibu:hatUStBetrag rdf:type owl:ObjectProperty ;
+                  rdfs:domain fibu:Einzelposition ;
+                  rdfs:range <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/AmountOfMoney> ;
+                  rdfs:label "has VAT category tax amount"@en ,
+                             "hat Umsatzsteuerbetrag"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatUmsatz
+fibu:hatUmsatz rdf:type owl:ObjectProperty ;
+               rdfs:domain fibu:Buchung ;
+               rdfs:range <https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/AmountOfMoney> ;
+               rdfs:comment "Umsatz der Buchung"@de ;
+               rdfs:label "hat Umsatz"@de ,
+						 "has revenue"@en .
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatUnternehmensform
+fibu:hatUnternehmensform rdf:type owl:ObjectProperty ;
+                         owl:inverseOf fibu:istUnternehmensformVon ;
+                         rdfs:domain fibu:Unternehmen ;
+                         rdfs:range fibu:Unternehmensform ;
+                         rdfs:label "has enterprise type"@en ,
+                                    "hat Unternehmensform"@de .
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#identischerGP
+fibu:identischerGP rdf:type owl:ObjectProperty ,
+                            owl:SymmetricProperty ;
+                   rdfs:domain fibu:Geschaeftspartner ;
+                   rdfs:range fibu:Geschaeftspartner ;
+                   rdfs:label "identical business partner"@en ,
+                              "identischer Geschäftspartner"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#istAdresseVon
+fibu:istAdresseVon rdf:type owl:ObjectProperty ;
+                   rdfs:domain fibu:Adresse ;
+                   rdfs:range fibu:HandelndeEntitaet ;
+                   rdfs:label "is address of"@en ,
+                              "ist Adresse von"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#istBrancheVon
+fibu:istBrancheVon rdf:type owl:ObjectProperty ;
+                   rdfs:domain fibu:Branche ;
+                   rdfs:range fibu:Unternehmen ;
+                   rdfs:label "ist Branche von"@de ,
+							"is industrial sector of"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#istEinzelpositionVon
+fibu:istEinzelpositionVon rdf:type owl:ObjectProperty ;
+                          rdfs:domain fibu:Einzelposition ;
+                          rdfs:range fibu:Beleg ;
+                          rdfs:label "is invoice line of"@en ,
+                                     "ist Einzelposition von"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#istGegenkontoVon
+fibu:istGegenkontoVon rdf:type owl:ObjectProperty ;
+                      rdfs:domain fibu:Buchungskonto ;
+                      rdfs:range fibu:Buchung ;
+                      rdfs:label "ist Gegenkonto von"@de ,
+								"is contra account of"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#istGegenstandVon
+fibu:istGegenstandVon rdf:type owl:ObjectProperty ;
+                      rdfs:domain fibu:Gegenstand ;
+                      rdfs:range fibu:Einzelposition ;
+                      rdfs:label "is item of"@en ,
+                                 "ist Gegenstand von"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#istGeschaeftspartnerIn
+fibu:istGeschaeftspartnerIn rdf:type owl:ObjectProperty ;
+                            rdfs:domain fibu:Geschaeftspartner ;
+                            rdfs:range fibu:Beleg ;
+                            rdfs:label "ist Geschäftspartner in"@de ,
+										"is business partner in"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#istKontoVon
+fibu:istKontoVon rdf:type owl:ObjectProperty ;
+                 rdfs:domain fibu:Buchung ;
+                 rdfs:range fibu:Buchungskonto ;
+                 rdfs:label "ist Konto von"@de ,
+							"is account of"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#istLandVon
+fibu:istLandVon rdf:type owl:ObjectProperty ;
+                rdfs:domain fibu:Land ;
+                rdfs:range fibu:Adresse ;
+                rdfs:label "is country of"@en ,
+                           "ist Land von"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#istLeistungsempfaengerIn
+fibu:istLeistungsempfaengerIn rdf:type owl:ObjectProperty ;
+                              rdfs:domain fibu:Geschaeftspartner ;
+                              rdfs:range fibu:Beleg ;
+                              rdfs:label "is recipient of service in"@en,
+                                         "ist Leistungsempfänger in"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#istLeistungserbringerIn
+fibu:istLeistungserbringerIn rdf:type owl:ObjectProperty ;
+                           rdfs:domain fibu:Geschaeftspartner  ;
+                           rdfs:range fibu:Beleg ;
+                           rdfs:label "is provider of service in"@en ,
+                                      "ist Leistungserbringer in"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#istProduktklasseVon
+fibu:istProduktklasseVon rdf:type owl:ObjectProperty ;
+                         rdfs:domain fibu:Produktklasse ;
+                         rdfs:range fibu:Gegenstand ;
+                         rdfs:label "is product class of"@en ,
+                                    "ist Produktklasse von"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#istSKRvon
+fibu:istSKRvon rdf:type owl:ObjectProperty ;
+               rdfs:domain fibu:SKR ;
+               rdfs:range fibu:Mandant ;
+               rdfs:label "ist SKR von"@de ,
+							"is SKR of"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#istSteuersachverhaltVon
+fibu:istSteuersachverhaltVon rdf:type owl:ObjectProperty ;
+                             rdfs:domain fibu:Steuersachverhalt ;
+                             rdfs:range fibu:Buchung ;
+                             rdfs:label "ist Steuersachverhalt von"@de ,
+										"is taxable transaction of"@en .
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#istUnternehmensformVon
+fibu:istUnternehmensformVon rdf:type owl:ObjectProperty ;
+                            rdfs:domain fibu:Unternehmensform ;
+                            rdfs:range fibu:Unternehmen ;
+                            rdfs:label "is enterprise form of"@en ,
+                                       "ist Unternehmensform von"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#verbucht
+fibu:verbucht rdf:type owl:ObjectProperty ;
+              owl:inverseOf fibu:wirdVerbuchtIn ;
+              rdfs:domain fibu:Buchung ;
+              rdfs:range [ rdf:type owl:Class ;
+                                  owl:unionOf ( fibu:Beleg
+                                                fibu:Einzelposition
+                                              )
+                                ] ;
+              rdfs:label "verbucht"@de ,
+						"posts"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#versandterBeleg
+fibu:versandterBeleg rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf fibu:geschickt ;
+                     rdfs:domain fibu:Unternehmen ;
+                     rdfs:range fibu:Ausgangsrechnung ;
+                     rdfs:label "sent invoice"@en ,
+                                "versandter Beleg"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#wirdBeratenVon
+fibu:wirdBeratenVon rdf:type owl:ObjectProperty ;
+                    rdfs:domain fibu:Mandant ;
+                    rdfs:range fibu:Berater ;
+                    rdfs:label "wird beraten von"@de ,
+								"is advised by"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#wirdVerbuchtIn
+fibu:wirdVerbuchtIn rdf:type owl:ObjectProperty ;
+					owl:inverseOf fibu:verbucht ;
+                    rdfs:domain [ rdf:type owl:Class ;
+                                  owl:unionOf ( fibu:Beleg
+                                                fibu:Einzelposition
+                                              )
+                                ] ;
+                    rdfs:range fibu:Buchung ;
+                    rdfs:label "wird verbucht in"@de ,
+								"is posted in"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#zugeordneterBelegVon
+fibu:zugeordneterBelegVon rdf:type owl:ObjectProperty ;
+                          rdfs:domain fibu:Beleg ;
+                          rdfs:range fibu:Mandant ;
+                          rdfs:label "zugeordneter Beleg von"@de ,
+									"invoice belonging to"@en .
+
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+
+###  http://www.w3.org/2006/vcard/ns#hasEmail
+vcard:hasEmail rdf:type owl:DatatypeProperty ;
+               rdfs:domain fibu:HandelndeEntitaet ;
+			   rdfs:range xsd:string ;
+               rdfs:label "hat E-Mail"@de ,
+							"has email"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#hasTelephone
+vcard:hasTelephone rdf:type owl:DatatypeProperty ;
+                   rdfs:domain fibu:HandelndeEntitaet ;
+				   rdfs:range xsd:string ;
+                   rdfs:label "hat Telefonnummer"@de ,
+							"has telephone"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#country-name
+vcard:country-name rdf:type owl:DatatypeProperty ;
+                   rdfs:domain fibu:Land ;
+				   rdfs:range xsd:string ;
+                   rdfs:label "Landname"@de , 
+				     "country name"@en .
+
+
+
+###  http://www.w3.org/2006/vcard/ns#locality
+vcard:locality rdf:type owl:DatatypeProperty ;
+               rdfs:domain fibu:Adresse ;
+			   rdfs:range xsd:string ;
+               rdfs:comment "The locality (e.g. city or town) associated with the address of the object"@en ;
+               rdfs:label "Ortsname"@de , 
+							"locality"@en .
+
+
+###  http://www.w3.org/2006/vcard/ns#postal-code
+vcard:postal-code rdf:type owl:DatatypeProperty ;
+                  rdfs:domain fibu:Adresse ;
+				  rdfs:range xsd:string ;
+                  rdfs:label "Postleitzahl"@de ,
+							"postal code"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Anzahl
+fibu:Anzahl rdf:type owl:DatatypeProperty ;
+            rdfs:domain fibu:Einzelposition ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Menge der Gegenstände(Produkte oder Dienstleistungen), die in der Einzelposition aufgeführt ist."@de ,
+                         "The quantity of items (goods or services) that is charged in the Document line."@en ;
+            rdfs:label "Anzahl"@de ,
+                       "invoiced quantity"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#LeistungsempfaengerArtikelnummer
+fibu:LeistungsempfaengerArtikelnummer rdf:type owl:DatatypeProperty ;
+                                         rdfs:domain fibu:Gegenstand ;
+                                         rdfs:range xsd:string ;
+                                         rdfs:label "item number of recipient of service"@en ,
+                                                    "Artikelnummer bei Leistungsempfänger"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Ausstellungsdatum
+fibu:Ausstellungsdatum rdf:type owl:DatatypeProperty ;
+                       rdfs:domain <http://xmlns.com/foaf/0.1/Document> ;
+                       rdfs:range xsd:string ;
+                       rdfs:label "Ausstellungsdatum"@de ,
+                                  "document date of issue"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Belegnummer
+fibu:Belegnummer rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:domain fibu:Beleg ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "a reference of an invoice (e.g. reference number)"@en ;
+                 rdfs:label "Belegnummer"@de ,
+                            "invoice number"@en .
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#Eingangsdatum
+fibu:Eingangsdatum rdf:type owl:DatatypeProperty;
+                   rdfs:domain <http://xmlns.com/foaf/0.1/Document> ;
+                   rdfs:range xsd:string ;
+                   rdfs:label "Eingangsdatum"@de ,
+							"document receipt date"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#GegenstandBeschreibung
+fibu:GegenstandBeschreibung rdf:type owl:DatatypeProperty ;
+                            rdfs:domain fibu:Gegenstand ;
+                            rdfs:range xsd:string ;
+                            rdfs:label "Gegenstand-Beschreibung"@de ,
+                                       "item description"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#GegenstandBezeichnung
+fibu:GegenstandBezeichnung rdf:type owl:DatatypeProperty ;
+                           rdfs:domain fibu:Gegenstand ;
+                           rdfs:range xsd:string ;
+                           rdfs:label "Gegenstand-Bezeichnung"@de ,
+                                      "item name"@en .
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#Handelsname
+fibu:Handelsname rdf:type owl:DatatypeProperty ;
+                 rdfs:domain fibu:HandelndeEntitaet ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "A name by which a trading entity is known, other than formal name (also known as business name)."@en ;
+                 rdfs:label "Handelsname"@de ,
+                            "trading name"@en  .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Hausnummer
+fibu:Hausnummer rdf:type owl:DatatypeProperty ;
+                rdfs:domain fibu:Adresse ;
+				rdfs:range xsd:string ;
+                rdfs:label "Hausnummer"@de ,
+							"street number"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#IBAN
+fibu:IBAN rdf:type owl:DatatypeProperty ;
+          rdfs:domain fibu:HandelndeEntitaet ;
+		  rdfs:range xsd:string ;
+          rdfs:label "IBAN"@de ,
+					"IBAN"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#KOST1
+fibu:KOST1 rdf:type owl:DatatypeProperty ;
+              rdfs:domain fibu:Buchung ;
+              rdfs:range xsd:string ;
+			  rdfs:comment "Informationen für die Kostenrechnung (z. B. Kostenstellen)"@de ,
+                        "information regarding cost accounting, i.e. cost centers"@en ;
+              rdfs:label "KOST 1"@de ,
+						"KOST 1"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#KOST2
+fibu:KOST2 rdf:type owl:DatatypeProperty ;
+              rdfs:domain fibu:Buchung ;
+			  rdfs:range xsd:string ;
+              rdfs:label "KOST 2"@de ,
+						"KOST 2"@en .
+
+
+
+###  https://data.datev.de/ACS/fibu#hatMandantenKundennummerZugeordnet
+fibu:hatMandantenKundennummerZugeordnet rdf:type owl:DatatypeProperty ;
+                                        rdfs:domain fibu:Geschaeftspartner ;
+                                        rdfs:range xsd:string ;
+                                        rdfs:comment "Kundennummber, die der GP dem Mandanten zugeordnet hat"@de ;
+                                        rdfs:label "client's customer number assigned by business partner"@en ,
+											"Mandanten-Kundennummer bei Geschäftspartner"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatKundennummerbeiMandant
+fibu:hatKundennummerbeiMandant rdf:type owl:DatatypeProperty ;
+                               rdfs:domain fibu:Geschaeftspartner ;
+                               rdfs:range xsd:string ;
+                               rdfs:comment "dem GP zugeordnete Kundenummer aus Sicht des Mandanten"@de ;
+                               rdfs:label "Geschäftspartner-Kundennummer bei Mandant"@de ,
+											"business partner's customer number assigned by client"@en .
+
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#KundennummerAufBeleg
+fibu:KundennummerAufBeleg rdf:type owl:DatatypeProperty ;
+                          rdfs:domain fibu:Beleg ;
+                          rdfs:range xsd:string ;
+                          rdfs:label "Kundennummer auf Beleg"@de ,
+                                     "customer number on document"@en .
+
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#LieferLeistungsdatum
+fibu:LieferLeistungsdatum rdf:type owl:DatatypeProperty ;
+                    rdfs:domain fibu:Beleg ;
+                    rdfs:range xsd:string ;
+                    rdfs:comment "Leistungsdatum bei Dienstleistungen; Lieferdatum bei Waren oder Produkten"@de ,
+                                 "the date on which the supply of goods or services was made or completed."@en ;
+                    rdfs:label "Liefer-/Leistungsdatum"@de ,
+                               "Date of delivery/service"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#LeistungserbringerArtikelnummer
+fibu:LeistungserbringerArtikelnummer rdf:type owl:DatatypeProperty ;
+                                     rdfs:domain fibu:Gegenstand ;
+                                     rdfs:range xsd:string ;
+                                     rdfs:label "Artikelnummer bei Leistungserbringer"@de ,
+                                                "item number of provider of service"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Mengeneinheit
+fibu:Mengeneinheit rdf:type owl:DatatypeProperty ;
+                   rdfs:domain fibu:Einzelposition ;
+                   rdfs:range xsd:string ;
+                   rdfs:comment "The unit of measure that applies to the invoiced quantity."@en ;
+                   rdfs:label "Mengeneinheit"@de ,
+                              "invoiced quantity unit of measure"@en .
+                  
+
+
+###  https://data.datev.de/meta/ACS/fibu#POBox
+fibu:POBox rdf:type owl:DatatypeProperty ;
+           rdfs:domain fibu:Adresse ;
+		   rdfs:range xsd:string		   ;
+           rdfs:label "Postfach"@de ,
+					"PO box"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SollHabenKZ
+fibu:SollHabenKZ rdf:type owl:DatatypeProperty ;
+						  rdfs:domain fibu:Buchung ;
+						  rdfs:range xsd:string ;
+						  rdfs:label "Soll/Haben-Kennzeichen"@de , 
+									 "debit/credit indicator"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SteuerIdentifikationsnummer
+fibu:SteuerIdentifikationsnummer rdf:type owl:DatatypeProperty ;
+                                 rdfs:subPropertyOf fibu:SteuerNrPersonen ;
+                                 rdfs:domain fibu:HandelndeEntitaet ;
+                                 rdfs:range xsd:string ;
+                                 rdfs:comment """Lebenslange Identifikationsnummer, Abkürzung TIN; jede steuerpflichtige natürliche oder juristische Person ;"""@de ,
+											"Lifetime identification number, abbreviated as TIN; each taxable individual or legal entity"@en ;
+                                 rdfs:label "Steuer-Identifikationsnummer (TIN)"@de ,
+                                            "Tax Identification Number (TIN)"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SteuerNrPersonen
+fibu:SteuerNrPersonen rdf:type owl:DatatypeProperty ;
+                      rdfs:domain fibu:HandelndeEntitaet ;
+					  rdfs:range xsd:string ;
+                      rdfs:comment "steuerliche Relevante Nummern/Ids für jede steuerpflichtige natürliche oder juristische Person"@de ,
+					     "tax-relevant numbers/IDs for each taxable individual or legal entity"@en ;
+					  rdfs:label "Steuererlich relevante IDs"@de ,
+					     "tax-relevant IDs"@en . 
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#Steuernummer
+fibu:Steuernummer rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf fibu:SteuerNrPersonen ;
+                  rdfs:domain fibu:HandelndeEntitaet ;
+                  rdfs:range xsd:string;
+                  rdfs:comment "Abkürzung St.-Nr. ; jede steuerpflichtige natürliche oder juristische Person ; setzt sich zusammen aus Informationen zu Bundesland-zuständigem Finanzamt-persönlicher Nummer und ändert sich z.B. bei Umzug"@de ,
+				     "A tax identification number assigned to each taxable individual or legal entity. It consists of information about the state, responsible tax office, and personal number, and it changes, for example, when moving."@en ;
+                  rdfs:label "Steuernummer"@de ,
+						"tax number"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Strassenname
+fibu:Strassenname rdf:type owl:DatatypeProperty ;
+                  rdfs:domain fibu:Adresse ;
+				  rdfs:range xsd:string ;
+                  rdfs:label "Straßenname"@de ,
+							"street name"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#UStIdNr
+fibu:UStIdNr rdf:type owl:DatatypeProperty ;
+             rdfs:domain fibu:Unternehmen ;
+             rdfs:range xsd:string ;
+             rdfs:comment "Steuernummer für Unternehmen"@de ,
+                          "value added tax identifier"@en ;
+             rdfs:label "Umsatzsteuer-Ident-Nr"@de ,
+                        "VAT Identification Number"@en .
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#ZeilenID
+fibu:ZeilenID rdf:type owl:DatatypeProperty ;
+              rdfs:domain fibu:Einzelposition ;
+              rdfs:range xsd:int ;
+              rdfs:label "ZeilenID"@de ,
+                         "line identifier"@en .
+
+
+###  https://data.datev.de/ACS/fibu#Wirtschaftsjahr
+fibu:Wirtschaftsjahr rdf:type owl:DatatypeProperty ;
+                  rdfs:domain fibu:Buchung ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "Wirtschaftsjahr"@de ,
+							"fiscal year"@en .
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatBuchungstext
+fibu:hatBuchungstext rdf:type owl:DatatypeProperty ;
+                     rdfs:domain fibu:Buchung ;
+					 rdfs:range xsd:string ;
+                     rdfs:label "hat Buchungstext"@de ,
+								"has posting description"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#istRechnungskorrektur
+fibu:istRechnungskorrektur rdf:type owl:DatatypeProperty ;
+                           rdfs:domain fibu:Beleg ;
+                           rdfs:range xsd:boolean ;
+                           rdfs:label "ist Rechnungskorrektur"@de ,
+									  "is invoice correction"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#offiziellerName
+fibu:offiziellerName rdf:type owl:DatatypeProperty ;
+                     rdfs:domain fibu:Unternehmen ;
+                     rdfs:range xsd:string ;
+                     rdfs:comment "The full formal name by which the organization is registered in the national registry of legal entities or as a taxable person or otherwise trades as a person or persons."@en ;
+                     rdfs:label "formal name"@en ,
+                                "offizieller Name"@de .
+
+
+###  https://data.datev.de/ACS/fibu#hatUmsatzsteuersatz 
+fibu:hatUmsatzsteuersatz rdf:type owl:DatatypeProperty ;
+                            rdfs:domain fibu:Einzelposition ;
+							rdfs:range xsd:string ;
+                            rdfs:label "hat Umsatzsteuersatz"@de ,
+									"has VAT rate"@en .
+
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#hatWaehrungsKZ
+fibu:hatWaehrungsKZ rdf:type owl:DatatypeProperty ;
+                    rdfs:domain fibu:Buchung ;
+                    rdfs:range xsd:string ;
+                    rdfs:label "hat Währungskennzeichen"@de ,
+								"has currency code"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://xmlns.com/foaf/0.1/Document
+<http://xmlns.com/foaf/0.1/Document> rdf:type owl:Class ;
+                                     rdfs:label "Dokument"@de ,
+											"document"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Adresse
+fibu:Adresse rdf:type owl:Class ;
+             rdfs:label "Adresse"@de ,
+                        "address"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Ausgangsrechnung
+fibu:Ausgangsrechnung rdf:type owl:Class ;
+                      rdfs:subClassOf fibu:Beleg ;
+					  rdfs:label "Ausgangsrechnung"@de ,
+                        "outgoing invoice"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Beleg
+fibu:Beleg rdf:type owl:Class ;
+           rdfs:subClassOf <http://xmlns.com/foaf/0.1/Document> ;
+           rdfs:label "Beleg"@de ,
+                      "invoice"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Berater
+fibu:Berater rdf:type owl:Class ;
+             rdfs:subClassOf fibu:Unternehmen ;
+			 rdfs:label "Steuerberater"@de ,
+                        "tax advisor"@en . 
+
+
+###  https://data.datev.de/meta/ACS/fibu#Branche
+fibu:Branche rdf:type owl:Class ;
+             rdfs:label "Branche"@de ,
+                        "industrial sector"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Buchung
+fibu:Buchung rdf:type owl:Class ;
+             rdfs:label "Buchung"@de ,
+						"posting record"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Buchungskonto
+fibu:Buchungskonto rdf:type owl:Class ;
+                   rdfs:label "Buchungskonto"@de ,
+							   "posting account"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Eingangsrechnung
+fibu:Eingangsrechnung rdf:type owl:Class ;
+                      rdfs:subClassOf fibu:Beleg ;
+					  rdfs:label "Eingangsrechnung"@de , 
+								"incoming invoice"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Einzelposition
+fibu:Einzelposition rdf:type owl:Class ;
+                    rdfs:label "Einzelposition"@de ,
+                               "invoice line"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Gegenstand
+fibu:Gegenstand rdf:type owl:Class ;
+                rdfs:comment "subject,i.e. product or service"@en ,
+							"Gegenstand, d.h. Produkt oder Dienstleistung"@de ;
+                rdfs:label "Gegenstand"@de ,
+                           "item"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Geschaeftspartner
+fibu:Geschaeftspartner rdf:type owl:Class ;
+                       rdfs:subClassOf [ rdf:type owl:Class ;
+                                         owl:unionOf ( fibu:NatuerlichePerson
+                                                       fibu:Unternehmen
+                                                     )
+                                       ] ;
+                       rdfs:label "Geschäftspartner"@de ,
+								  "business partner"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#HandelndeEntitaet
+fibu:HandelndeEntitaet rdf:type owl:Class ;
+                       rdfs:comment "Legal Entity Capable of Entering into Purchase Agreements"@en ;
+                       rdfs:label "Handelnde Entität"@de ,
+                                  "trading entity"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Land
+fibu:Land rdf:type owl:Class ;
+          rdfs:label "Land"@de ,
+				"country"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Mandant
+fibu:Mandant rdf:type owl:Class ;
+             rdfs:subClassOf fibu:Unternehmen ; 
+			 rdfs:label "Mandant"@de ,
+				"client"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#NatuerlichePerson
+fibu:NatuerlichePerson rdf:type owl:Class ;
+                       rdfs:subClassOf fibu:HandelndeEntitaet ;
+                       rdfs:comment "Natural person capable of entering into purchase agreements"@en ;
+                       rdfs:label "natural person"@en ,
+                                  "Natürliche Person"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Produktklasse
+fibu:Produktklasse rdf:type owl:Class ;
+                   rdfs:label "Produktklasse"@de ,
+							"product class"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SEA-VPI_01
+fibu:SEA-VPI_01 rdf:type owl:Class ;
+                rdfs:subClassOf fibu:Produktklasse ;
+                dcterms:source "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/Downloads/waegungsschema-2020.pdf?__blob=publicationFile" ;
+                rdfs:label "SEA-CPI 01_Food and non-alcoholic beverages"@en ,
+                           "SEA-VPI 01_Nahrungsmittel und alkoholfreie Getränke"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SEA-VPI_02
+fibu:SEA-VPI_02 rdf:type owl:Class ;
+                rdfs:subClassOf fibu:Produktklasse ;
+                dcterms:source "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/Downloads/waegungsschema-2020.pdf?__blob=publicationFile" ;
+                rdfs:label "SEA-CPI 02_Alcoholic beverages and tobacco"@en ,
+                           "SEA-VPI 02_Alkoholische Getränke und Tabakwaren"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SEA-VPI_03
+fibu:SEA-VPI_03 rdf:type owl:Class ;
+                rdfs:subClassOf fibu:Produktklasse ;
+                dcterms:source "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/Downloads/waegungsschema-2020.pdf?__blob=publicationFile" ;
+                rdfs:label "SEA-CPI 03_Clothing and footwear"@en ,
+                           "SEA-VPI 03_Bekleidung und Schuhe"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SEA-VPI_04
+fibu:SEA-VPI_04 rdf:type owl:Class ;
+                rdfs:subClassOf fibu:Produktklasse ;
+                dcterms:source "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/Downloads/waegungsschema-2020.pdf?__blob=publicationFile" ;
+                rdfs:label "SEA-CPI 04_Housing, water, electricity, gas and other fuels"@en ,
+                           "SEA-VPI 04_Wohnung, Wasser, Strom, Gas und andere Brennstoffe"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SEA-VPI_05
+fibu:SEA-VPI_05 rdf:type owl:Class ;
+                rdfs:subClassOf fibu:Produktklasse ;
+                dcterms:source "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/Downloads/waegungsschema-2020.pdf?__blob=publicationFile" ;
+                rdfs:label "SEA-CPI 05_Furniture, lighting equipment, appliances and other household equipment"@en ,
+                           "SEA-VPI 05_Möbel, Leuchten, Geräte u.a. Haushaltszubehör"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SEA-VPI_06
+fibu:SEA-VPI_06 rdf:type owl:Class ;
+                rdfs:subClassOf fibu:Produktklasse ;
+                dcterms:source "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/Downloads/waegungsschema-2020.pdf?__blob=publicationFile" ;
+                rdfs:label "SEA-CPI 06_ Health"@en ,
+                           "SEA-VPI 06_Gesundheit"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SEA-VPI_07
+fibu:SEA-VPI_07 rdf:type owl:Class ;
+                rdfs:subClassOf fibu:Produktklasse ;
+                dcterms:source "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/Downloads/waegungsschema-2020.pdf?__blob=publicationFile" ;
+                rdfs:label "SEA-CPI 07_Transport"@en ,
+                           "SEA-VPI 07_Verkehr"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SEA-VPI_08
+fibu:SEA-VPI_08 rdf:type owl:Class ;
+                rdfs:subClassOf fibu:Produktklasse ;
+                dcterms:source "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/Downloads/waegungsschema-2020.pdf?__blob=publicationFile" ;
+                rdfs:label "SEA-CPI 08_Communication"@en ,
+                           "SEA-VPI 08_Post und Telekommunikation"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SEA-VPI_09
+fibu:SEA-VPI_09 rdf:type owl:Class ;
+                rdfs:subClassOf fibu:Produktklasse ;
+                dcterms:source "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/Downloads/waegungsschema-2020.pdf?__blob=publicationFile" ;
+                rdfs:label "SEA-CPI 09_Recreation, entertainment and culture"@en ,
+                           "SEA-VPI 09_Freizeit, Unterhaltung und Kultur"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SEA-VPI_10
+fibu:SEA-VPI_10 rdf:type owl:Class ;
+                rdfs:subClassOf fibu:Produktklasse ;
+                dcterms:source "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/Downloads/waegungsschema-2020.pdf?__blob=publicationFile" ;
+                rdfs:label "SEA-CPI 10_Education"@en ,
+                           "SEA-VPI 10_Bildungswesen"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SEA-VPI_11
+fibu:SEA-VPI_11 rdf:type owl:Class ;
+                rdfs:subClassOf fibu:Produktklasse ;
+                dcterms:source "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/Downloads/waegungsschema-2020.pdf?__blob=publicationFile" ;
+                rdfs:label "SEA-CPI 11_Restaurant and accommodation services"@en ,
+                           "SEA-VPI 11_Gaststätten- und Beherbergungsdienstleistungen"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SEA-VPI_12
+fibu:SEA-VPI_12 rdf:type owl:Class ;
+                rdfs:subClassOf fibu:Produktklasse ;
+                dcterms:source "https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/Methoden/Downloads/waegungsschema-2020.pdf?__blob=publicationFile" ;
+                rdfs:label "SEA-CPI 12_Miscellaneous goods and services"@en ,
+                           "SEA-VPI 12_Andere Waren und Dienstleistungen"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SKR
+fibu:SKR rdf:type owl:Class ;
+         rdfs:comment "Standardkontenrahmen"@de ;
+         rdfs:label "SKR"@de .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SKR_03
+fibu:SKR_03 rdf:type owl:Class ;
+             rdfs:subClassOf fibu:SKR .
+
+
+###  https://data.datev.de/meta/ACS/fibu#SKR_04
+fibu:SKR_04 rdf:type owl:Class ;
+             rdfs:subClassOf fibu:SKR .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Steuersachverhalt
+fibu:Steuersachverhalt rdf:type owl:Class ;
+                       rdfs:label "Steuersachverhalt"@de ,
+								"taxable transaction"@en .
+
+
+
+###  https://data.datev.de/meta/ACS/fibu#Unternehmen
+fibu:Unternehmen rdf:type owl:Class ;
+                 rdfs:subClassOf fibu:HandelndeEntitaet ;
+                 rdfs:label "Unternehmen"@de ,
+							"company"@en .
+
+
+###  https://data.datev.de/meta/ACS/fibu#Unternehmensform
+fibu:Unternehmensform rdf:type owl:Class ;
+                      rdfs:label "Unternehmensform"@de ,
+                                 "type of enterprise"@en .
+
+
+
+
+###  https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/AmountOfMoney
+<https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/AmountOfMoney> rdf:type owl:Class ;
+                                                                                        rdfs:label "amount of money"@en ,
+                                                                                                   "Geldbetrag"@de .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
