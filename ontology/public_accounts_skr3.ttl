@@ -31,52 +31,64 @@ fibu:Buchungskonto rdf:type owl:Class ;
 ###  https://data.datev.de/meta/ACS/fibu#0_Anlage_Kapitalkonten
 fibu:0_Anlage_Kapitalkonten rdf:type owl:Class ; 
        rdfs:subClassOf fibu:Buchungskonto ; 
-       rdfs:label "0_Anlage_Kapitalkonten"@de . 
+       rdfs:label "0_Anlage_Kapitalkonten"@de ,
+                  "0_Asset_Capital_Accounts"@en .
 
 ###  https://data.datev.de/meta/ACS/fibu#1_Finanz_Privatkonten
 fibu:1_Finanz_Privatkonten rdf:type owl:Class ; 
        rdfs:subClassOf fibu:Buchungskonto ; 
-       rdfs:label "1_Finanz_Privatkonten"@de . 
+       rdfs:label "1_Finanz_Privatkonten"@de ,
+                  "1_Financial_Private_Accounts"@en .
 
 ###  https://data.datev.de/meta/ACS/fibu#2_Abgrenzungskonten
 fibu:2_Abgrenzungskonten rdf:type owl:Class ; 
        rdfs:subClassOf fibu:Buchungskonto ; 
-       rdfs:label "2_Abgrenzungskonten"@de . 
+       rdfs:label "2_Abgrenzungskonten"@de ,
+                  "2_Accrual_Accounts"@en .
 
 ###  https://data.datev.de/meta/ACS/fibu#3_Wareneingangs_Bestandskonten
 fibu:3_Wareneingangs_Bestandskonten rdf:type owl:Class ; 
        rdfs:subClassOf fibu:Buchungskonto ; 
-       rdfs:label "3_Wareneingangs_Bestandskonten"@de . 
+       rdfs:label "3_Wareneingangs_Bestandskonten"@de ,
+                  "3_Goods_Receipt_Inventory_Accounts"@en .
 
 ###  https://data.datev.de/meta/ACS/fibu#4_Betriebliche_Aufwendungen
 fibu:4_Betriebliche_Aufwendungen rdf:type owl:Class ; 
        rdfs:subClassOf fibu:Buchungskonto ; 
-       rdfs:label "4_Betriebliche_Aufwendungen"@de . 
+       rdfs:label "4_Betriebliche_Aufwendungen"@de ,
+                  "4_Operating_Expenses"@en .
 
 ###  https://data.datev.de/meta/ACS/fibu#5_FreieVerfuegung_SonstigeBetrieblicheAufwendungen
 fibu:5_FreieVerfuegung_SonstigeBetrieblicheAufwendungen rdf:type owl:Class ; 
        rdfs:subClassOf fibu:Buchungskonto ; 
-       rdfs:label "5_FreieVerfuegung_SonstigeBetrieblicheAufwendungen"@de . 
+       rdfs:label "5_FreieVerfuegung_SonstigeBetrieblicheAufwendungen"@de ,
+                  "5_Discretionary_Other_Operating_Expenses"@en .
 
 ###  https://data.datev.de/meta/ACS/fibu#6_FreieVerfuegung_SonstigeBetrieblicheAufwendungen
 fibu:6_FreieVerfuegung_SonstigeBetrieblicheAufwendungen rdf:type owl:Class ; 
        rdfs:subClassOf fibu:Buchungskonto ; 
-       rdfs:label "6_FreieVerfuegung_SonstigeBetrieblicheAufwendungen"@de . 
+       rdfs:label "6_FreieVerfuegung_SonstigeBetrieblicheAufwendungen"@de ,
+                  "6_Discretionary_Other_Operating_Expenses"@en .
 
 ###  https://data.datev.de/meta/ACS/fibu#7_Bestände_an_Erzeugnisse
 fibu:7_Bestände_an_Erzeugnisse rdf:type owl:Class ; 
        rdfs:subClassOf fibu:Buchungskonto ; 
-       rdfs:label "7_Bestände_an_Erzeugnisse"@de . 
+       rdfs:label "7_Bestände_an_Erzeugnisse"@de ,
+                  "7_Inventory_of_Products"@en .
 
 ###  https://data.datev.de/meta/ACS/fibu#8_Erloeskonten
 fibu:8_Erloeskonten rdf:type owl:Class ; 
        rdfs:subClassOf fibu:Buchungskonto ; 
-       rdfs:label "8_Erloeskonten"@de . 
+       rdfs:label "8_Erloeskonten"@de ,
+                  "8_Revenue_Accounts"@en .
+
 
 ###  https://data.datev.de/meta/ACS/fibu#9_Vortrags_Kapital_Korrektur_statistischeKonten
 fibu:9_Vortrags_Kapital_Korrektur_statistischeKonten rdf:type owl:Class ; 
        rdfs:subClassOf fibu:Buchungskonto ; 
-       rdfs:label "9_Vortrags_Kapital_Korrektur_statistischeKonten"@de . 
+       rdfs:label "9_Vortrags_Kapital_Korrektur_statistischeKonten"@de ,
+                  "9_Carryforward_Capital_Adjustment_Statistical_Accounts"@en .
+
 
 ###  https://data.datev.de/meta/ACS/fibu#Buchungskonto_0005
 fibu:Buchungskonto_0005 rdf:type owl:Class ; 
