@@ -1,6 +1,8 @@
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <h1>ENEXA use case 1: Business software solutions</h1>
+<div style="display: flex; justify-content: flex-end; align-items: center;">
   <img src="doc/datev.png" alt="Logo" style="width: 60px; height: 60px;">
+</div>
+<div style="display: flex; justify-content: flex-start; align-items: center;">
+  <h1>ENEXA use case 1: Business software solutions</h1>
 </div>
 
 
